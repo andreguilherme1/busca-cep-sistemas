@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Busca CEP</title>
+  <!-- Links para os estilos CSS -->
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <!-- Barra de navegação -->
+  <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+    <div class="bg-dark p-4">
+      <h5 class="text-body-emphasis h4">Sistemas Distribuídos</h5>
+      <span class="text-body-secondary">Alunos: André Guilherme e Marcos Vinicius</span>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <div class="container">
+    <h1 style="text-align: center; padding: 10px;">Busca CEP</h1>
+    <!-- Abas de navegação -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <!-- Aba para busca por CEP -->
+        <button onclick="limparResultado()" class="nav-link active" id="home-tab" data-bs-toggle="tab"
+          data-bs-target="#cep-content" type="button" role="tab" aria-controls="home-tab-pane"
+          aria-selected="true">BUSCAR POR CEP</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <!-- Aba para busca por rua -->
+        <button onclick="limparResultado()" class="nav-link" id="profile-tab" data-bs-toggle="tab"
+          data-bs-target="#rua-content" type="button" role="tab" aria-controls="profile-tab-pane"
+          aria-selected="false">BUSCAR POR RUA</button>
+      </li>
+    </ul>
+    <!-- Conteúdo das abas -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="cep-content" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+        <br>
+        <br>
+        <!-- Formulário de busca por CEP -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">CEP</span>
+          <input id="cep" type="text" class="form-control" placeholder="Ex: 51030300" aria-label="cep"
+            aria-describedby="basic-addon1">
+          <button onclick="buscaCep()" type="button" class="btn btn-primary"><i style="margin-right: '5px';"
+              class="bi-search"></i> Enviar</button>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="rua-content" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <br>
+        <br>
+        <!-- Formulário de busca por rua -->
+        <div class="input-group mb-3">
+          <!-- Select para selecionar o estado -->
+          <select onchange="mudarUF(event)" id="ufs" class="form-select" aria-label="Default select example">
+            <option selected>Selecione o estado</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <!-- Select para selecionar a cidade -->
+          <select id="cidades" class="form-select" aria-label="Default select example">
+            <option selected>Selecione a cidade</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">RUA</span>
+          <input id="rua" type="text" class="form-control" placeholder="Ex: Rua 1" aria-label="cep"
+            aria-describedby="basic-addon1">
+          <button onclick="buscaRua()" type="button" class="btn btn-primary"><i style="margin-right: '5px';"
+              class="bi-search"></i> Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Div para exibir os resultados -->
+  <div class="container" id="result"></div>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
