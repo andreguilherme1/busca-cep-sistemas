@@ -2,11 +2,20 @@
 // Obtém o valor do campo de entrada 'cep' do HTML, realiza uma solicitação fetch
 // para a API e exibe os resultados na div com o id 'result'.
 function buscaCep() {
-  cep = document.getElementById("cep").value
-  result = document.getElementById("result")
+  cep = document.getElementById("cep").value;
+  result = document.getElementById("result");
   fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    .then((res) => { return res.json() })
-    .then((cep) => { result.innerHTML = mountList(cep) })
+    .then((res) => { return res.json(); })
+    .then((cep) => { 
+      if (cep.erro) {
+        result.innerHTML = "<div class='alert alert-danger'>CEP não encontrado. Por favor, verifique e tente novamente.</div>";
+      } else {
+        result.innerHTML = mountList(cep);
+      }
+    })
+    .catch((error) => {
+      result.innerHTML = "<div class='alert alert-danger'>CEP inválido.</div>";
+    });
 }
 
 // Função que busca e preenche os estados (UFs) disponíveis. Realiza uma solicitação fetch para a API de estados, preenche uma lista de opçõese as insere no elemento select com o id 'ufs'.
